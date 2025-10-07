@@ -1,4 +1,4 @@
-ZSH_THEME="badhon"
+ZSH_THEME="badhonx"
 export ZSH=$HOME/.oh-my-zsh
 plugins=(git)
 
@@ -77,10 +77,10 @@ banner
     sleep 1
 }
 
-BADHON_SERVER="https://your-badhon-server.vercel.app"
+BADHONX_SERVER="https://your-badhonx-server.vercel.app"
 cd $HOME
 D1=".termux"
-VERSION="$D1/bh.txt"
+VERSION="$D1/bhx.txt"
 if [ -f "$VERSION" ]; then
     version=$(cat "$VERSION")
 else
@@ -91,25 +91,25 @@ fi
 banner() {
     clear
     echo
-    echo -e "    ${y}██████╗░░█████╗░██████╗░██╗░░██╗░█████╗░███╗░░██╗"
-    echo -e "    ${y}██╔══██╗██╔══██╗██╔══██╗██║░░██║██╔══██╗████╗░██║"
-    echo -e "    ${y}██████╦╝███████║██║░░██║███████║██║░░██║██╔██╗██║"
-    echo -e "    ${c}██╔══██╗██╔══██║██║░░██║██╔══██║██║░░██║██║╚████║"
-    echo -e "    ${c}██████╦╝██║░░██║██████╔╝██║░░██║╚█████╔╝██║░╚███║"
-    echo -e "    ${c}╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚══╝${n}"
+    echo -e "    ${y}██████╗░░█████╗░██████╗░██╗░░██╗░█████╗░███╗░░██╗██╗░░██╗"
+    echo -e "    ${y}██╔══██╗██╔══██╗██╔══██╗██║░░██║██╔══██╗████╗░██║╚██╗██╔╝"
+    echo -e "    ${y}██████╦╝███████║██║░░██║███████║██║░░██║██╔██╗██║░╚███╔╝░"
+    echo -e "    ${c}██╔══██╗██╔══██║██║░░██║██╔══██║██║░░██║██║╚████║░██╔██╗░"
+    echo -e "    ${c}██████╦╝██║░░██║██████╔╝██║░░██║╚█████╔╝██║░╚███║██╔╝╚██╗"
+    echo -e "    ${c}╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░╚═╝${n}"
     echo
 }
 
 udp() {
-    messages=$(curl -s "$BADHON_SERVER/check_version" | jq -r --arg vs "$version" '.[] | select(.message == $vs) | .message')
+    messages=$(curl -s "$BADHONX_SERVER/check_version" | jq -r --arg vs "$version" '.[] | select(.message == $vs) | .message')
 
     if [ -n "$messages" ]; then
         banner
         echo -e " ${A} ${c}Tools Updated ${n}| ${c}New ${g}$version"
         sleep 3
-        git clone https://github.com/your-username/BADHON.git &> /dev/null &
+        git clone https://github.com/your-username/BADHONX.git &> /dev/null &
         spin
-        cd BADHON
+        cd BADHONX
         bash install.sh
     else
         clear
@@ -162,16 +162,16 @@ for ((i=1; i<=8; i++)); do
 done
 echo "╚${var2}╝"
 PUT 4 0
-figlet -c -f ASCII-Shadow -w $width BADHON | lolcat
+figlet -c -f ASCII-Shadow -w $width BADHONX | lolcat
 PUT 3 0
 echo -e "\033[36;1m"
 for ((i=1; i<=7; i++)); do
     echo "║"
 done
 PUT 10 ${var4}
-echo -e "\e[32m[\e[0m\uf489\e[32m] \e[36mBADHON \e[36m1.0\e[0m"
+echo -e "\e[32m[\e[0m\uf489\e[32m] \e[36mBADHONX \e[36m1.0\e[0m"
 PUT 12 0
-ads1=$(curl -s "$BADHON_SERVER/ads" | jq -r '.[] | .message')
+ads1=$(curl -s "$BADHONX_SERVER/ads" | jq -r '.[] | .message')
 
 if [ -z "$ads1" ]; then
 DATE=$(date +"%Y-%b-%a ${g}—${c} %d")
