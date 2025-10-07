@@ -24,8 +24,8 @@ lm='\033[1;96m▱▱▱▱▱▱\033[1;0m〄\033[1;96m▱▱▱▱▱▱\033[1;0
 dm='\033[1;93m▱▱▱▱▱▱\033[1;0m〄\033[1;93m▱▱▱▱▱▱\033[1;00m'
 
 
-URL="https://codex-chat-hew1.onrender.com"
-USERNAME_DIR="$HOME/.CODEX"
+URL="https://badhonx-chat-hew1.onrender.com"
+USERNAME_DIR="$HOME/.BADHONX"
 USERNAME_FILE="$USERNAME_DIR/usernames.txt"
 random_number=$(( RANDOM % 2 ))
 
@@ -33,7 +33,7 @@ inter() {
 clear
 echo
 echo -e "               ${g}╔═══════════════╗"
-echo -e "               ${g}║ ${n}</>  ${c}DARK-X${g}   ║"
+echo -e "               ${g}║ ${n}</>  ${c}BADHON-X${g} ║"
 echo -e "               ${g}╚═══════════════╝"
 echo -e "  ${g}╔════════════════════════════════════════════╗"
 echo -e "  ${g}║  ${C} ${y}Checking Your Internet Connection¡${g}  ║"
@@ -223,7 +223,7 @@ clear
         echo -e "${lm}"
         echo -e " $D"
         echo -e "  ${c}┏┓┓┏┏┓┏┳┓"
-        echo -e "  ${c}┃ ┣┫┣┫ ┃               ${C} ${g}t.me/Codex_369"
+        echo -e "  ${c}┃ ┣┫┣┫ ┃               ${C} ${g}t.me/BadhonX_369"
         echo -e "  ${c}┗┛┛┗┛┗ ┻"
         echo -e "  $T"
         echo -e "${lm}"
@@ -279,7 +279,7 @@ echo -e "      ${y} (____/(__)(__)(_)\_)(_)\_)   (_/\_)\n\n"
     echo
     echo -e "		        ${g}Hey ${y}$username"
     echo -e "${c}              (\_/)"
-    echo -e "              (${y}^ω^${c})     ${g}I'm Dx-Simu${c}"
+    echo -e "              (${y}^ω^${c})     ${g}I'm BadhonX${c}"
     echo -e "             ⊂(___)づ  ⋅˚₊‧ ଳ ‧₊˚ ⋅"
     echo
     echo -e " ${A} ${c}Your account created ${g}Successfully¡${c}"
