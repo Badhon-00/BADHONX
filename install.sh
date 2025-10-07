@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# ─────────────────────────────
-#        BADHON BANNER SETUP
-# ─────────────────────────────
+# ╔═══════════════════════════════════════════════════════╗
+# ║           BADHON'S HACKER-TYPE BANNER SETUP           ║
+# ╚═══════════════════════════════════════════════════════╝
 
+# ─────────────────────────────
 # Colors
 r='\033[1;91m'; p='\033[1;95m'; y='\033[1;93m'
 g='\033[1;92m'; n='\033[0m';  b='\033[1;94m'; c='\033[1;96m'
 
+# ─────────────────────────────
 # Symbols
 A="${g}[+]"
 E="${r}[×]"
@@ -15,13 +17,13 @@ C="${c}[</>]"
 lm="${c}▱▱▱▱▱▱▱▱▱▱▱▱〄▱▱▱▱▱▱▱▱▱▱▱▱${n}"
 dm="${y}▱▱▱▱▱▱▱▱▱▱▱▱〄▱▱▱▱▱▱▱▱▱▱▱▱${n}"
 
+# ─────────────────────────────
 # Device Info
 MODEL=$(getprop ro.product.model 2>/dev/null || echo "Unknown")
 VENDOR=$(getprop ro.product.manufacturer 2>/dev/null || echo "Unknown")
-random_number=$(( RANDOM % 2 ))
 
 # ─────────────────────────────
-# Exit trap
+# Exit Trap
 exit_script() {
     clear
     echo
@@ -37,7 +39,7 @@ exit_script() {
 trap exit_script SIGINT SIGTSTP
 
 # ─────────────────────────────
-# Slow print
+# Slow Print
 sp() {
     for (( i=0; i<${#1}; i++ )); do
         echo -n "${1:$i:1}"
@@ -47,10 +49,23 @@ sp() {
 }
 
 # ─────────────────────────────
-# Spinner installer
+# Pac-Man Loading Animation
+pacman_loading() {
+    frames=("C" "o" "O" "o")
+    for i in {1..12}; do
+        for f in "${frames[@]}"; do
+            echo -ne "\r${y}(${f})${n} ${c}Eating bugs...${n}"
+            sleep 0.1
+        done
+    done
+    echo -e "\r${g}[✓] Done!${n}"
+}
+
+# ─────────────────────────────
+# Spinner Installer
 spin_install() {
     local pkg=$1
-    local delay=0.15
+    local delay=0.12
     local spin=('⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏')
     echo -ne "${y}Installing ${pkg}...${n}"
     pkg install "$pkg" -y >/dev/null 2>&1 &
@@ -65,17 +80,20 @@ spin_install() {
 }
 
 # ─────────────────────────────
-# Network check
+# Network Check (Fixed – no infinite loop)
 check_network() {
     clear
     echo -e "${b}╔════════════════════════╗"
     echo -e "${b}║ ${y}Checking Internet...${b} ║"
     echo -e "${b}╚════════════════════════╝${n}"
-    until curl -s --head https://github.com | grep "200 OK" >/dev/null; do
-        echo -e "${E} ${r}No Internet! Retrying...${n}"
-        sleep 2
-    done
-    echo -e "${A} ${g}Internet Connected!${n}"
+    
+    # Try ping with timeout
+    if ping -c 1 -W 3 google.com >/dev/null 2>&1; then
+        echo -e "${A} ${g}Internet Connected!${n}"
+    else
+        echo -e "${r}[×] No Internet Connection Detected.${n}"
+        echo -e "${y}Skipping network-dependent steps...${n}"
+    fi
     sleep 1
     clear
 }
@@ -102,7 +120,7 @@ show_banner() {
 }
 
 # ─────────────────────────────
-# Help
+# Help Screen
 help() {
     clear
     echo -e "${p}■ ${g}Use Termux Extra Key Buttons${n}"
@@ -113,7 +131,7 @@ help() {
 }
 
 # ─────────────────────────────
-# Installer
+# Package Installer
 install_packages() {
     pkgs=("git" "curl" "python" "jq" "figlet" "termux-api" "ncurses-utils" "zsh" "ruby" "exa")
     for p in "${pkgs[@]}"; do
@@ -121,20 +139,22 @@ install_packages() {
     done
     gem install lolcat >/dev/null 2>&1
     pip install lolcat >/dev/null 2>&1
+    pacman_loading
 }
 
 # ─────────────────────────────
-# Setup
+# Banner Setup
 setup_banner() {
     mkdir -p "$HOME/.termux"
     cp "$HOME/BADHON/files/font.ttf" "$HOME/.termux/" 2>/dev/null
     cp "$HOME/BADHON/files/colors.properties" "$HOME/.termux/" 2>/dev/null
     termux-reload-settings
     echo -e "${A} ${g}Font & Color Applied!${n}"
+    sleep 1
 }
 
 # ─────────────────────────────
-# Name Input
+# Username Setup
 set_username() {
     clear
     echo
@@ -154,7 +174,7 @@ set_username() {
 }
 
 # ─────────────────────────────
-# Menu
+# Main Menu
 main_menu() {
     options=("Free Usage" "Premium")
     selected=0
@@ -195,7 +215,7 @@ main_menu() {
                     ;;
                 "Premium")
                     echo -e "${y}Opening Telegram...${n}"
-                    xdg-open "https://t.me/badhon_6t9_x"
+                    xdg-open "https://t.me/badhon_6t9_x" >/dev/null 2>&1
                     exit 0
                     ;;
             esac
