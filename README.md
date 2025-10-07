@@ -20,10 +20,10 @@ apt upgrade -y
 pkg install git -y
 ```
 ```
-git clone https://github.com/Alpha-Codex369/CODEX.git
+git clone https://github.com/Badhon-00/Termux-banner.git
 ```
 ```
-cd CODEX/
+cd XBADHON/
 ```
 ```
 chmod +x *
