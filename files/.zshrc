@@ -1,11 +1,10 @@
-ZSH_THEME="codex"
+ZSH_THEME="badhon"
 export ZSH=$HOME/.oh-my-zsh
 plugins=(git)
 
 source $HOME/.oh*/oh-my-zsh.sh
 source /data/data/com.termux/files/home/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /data/data/com.termux/files/home/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-alias ls='lsd'
 alias ls='lsd -lh --blocks size,name'
 alias rd='termux-reload-settings'
 
@@ -78,39 +77,39 @@ banner
     sleep 1
 }
 
-CODEX="https://codex-server-pied.vercel.app"
+BADHON_SERVER="https://your-badhon-server.vercel.app"
 cd $HOME
 D1=".termux"
-VERSION="$D1/dx.txt"
+VERSION="$D1/bh.txt"
 if [ -f "$VERSION" ]; then
     version=$(cat "$VERSION")
 else
-    echo "version 1.5" > "$VERSION"
+    echo "version 1.0" > "$VERSION"
     version=$(cat "$VERSION")
 fi
 
 banner() {
     clear
     echo
-    echo -e "    ${y}░█████╗░░█████╗░██████╗░███████╗██╗░░██╗"
-    echo -e "    ${y}██╔══██╗██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝"
-    echo -e "    ${y}██║░░╚═╝██║░░██║██║░░██║█████╗░░░╚███╔╝░"
-    echo -e "    ${c}██║░░██╗██║░░██║██║░░██║██╔══╝░░░██╔██╗░"
-    echo -e "    ${c}╚█████╔╝╚█████╔╝██████╔╝███████╗██╔╝╚██╗"
-    echo -e "    ${c}░╚════╝░░╚════╝░╚═════╝░╚══════╝╚═╝░░╚═╝${n}"
+    echo -e "    ${y}██████╗░░█████╗░██████╗░██╗░░██╗░█████╗░███╗░░██╗"
+    echo -e "    ${y}██╔══██╗██╔══██╗██╔══██╗██║░░██║██╔══██╗████╗░██║"
+    echo -e "    ${y}██████╦╝███████║██║░░██║███████║██║░░██║██╔██╗██║"
+    echo -e "    ${c}██╔══██╗██╔══██║██║░░██║██╔══██║██║░░██║██║╚████║"
+    echo -e "    ${c}██████╦╝██║░░██║██████╔╝██║░░██║╚█████╔╝██║░╚███║"
+    echo -e "    ${c}╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚══╝${n}"
     echo
 }
 
 udp() {
-    messages=$(curl -s "$CODEX/check_version" | jq -r --arg vs "$version" '.[] | select(.message == $vs) | .message')
+    messages=$(curl -s "$BADHON_SERVER/check_version" | jq -r --arg vs "$version" '.[] | select(.message == $vs) | .message')
 
     if [ -n "$messages" ]; then
         banner
         echo -e " ${A} ${c}Tools Updated ${n}| ${c}New ${g}$version"
         sleep 3
-        git clone https://github.com/Alpha-Codex369/CODEX.git &> /dev/null &
+        git clone https://github.com/your-username/BADHON.git &> /dev/null &
         spin
-        cd CODEX
+        cd BADHON
         bash install.sh
     else
         clear
@@ -163,16 +162,16 @@ for ((i=1; i<=8; i++)); do
 done
 echo "╚${var2}╝"
 PUT 4 0
-figlet -c -f ASCII-Shadow -w $width SIMU | lolcat
+figlet -c -f ASCII-Shadow -w $width BADHON | lolcat
 PUT 3 0
 echo -e "\033[36;1m"
 for ((i=1; i<=7; i++)); do
     echo "║"
 done
 PUT 10 ${var4}
-echo -e "\e[32m[\e[0m\uf489\e[32m] \e[36mCODEX \e[36m1.4\e[0m"
+echo -e "\e[32m[\e[0m\uf489\e[32m] \e[36mBADHON \e[36m1.0\e[0m"
 PUT 12 0
-ads1=$(curl -s "$CODEX/ads" | jq -r '.[] | .message')
+ads1=$(curl -s "$BADHON_SERVER/ads" | jq -r '.[] | .message')
 
 if [ -z "$ads1" ]; then
 DATE=$(date +"%Y-%b-%a ${g}—${c} %d")
