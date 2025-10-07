@@ -1,6 +1,6 @@
 ds="$HOME/.termux"
 pp="$ds/bash.bashrc"
 simu="$ds/colors.properties"
-rm -rf "$simu"
+rm -rf "badhonx"
 cp "$pp" $PREFIX/etc/
 termux-reload-settings
