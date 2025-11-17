@@ -1,4 +1,4 @@
-ZSH_THEME="badhonx"
+ZSH_THEME="badhon"
 export ZSH=$HOME/.oh-my-zsh
 plugins=(git)
 
@@ -91,23 +91,23 @@ fi
 banner() {
     clear
     echo
-    echo -e "    ${y}██████╗░░█████╗░██████╗░██╗░░██╗░█████╗░███╗░░██╗██╗░░██╗"
-    echo -e "    ${y}██╔══██╗██╔══██╗██╔══██╗██║░░██║██╔══██╗████╗░██║╚██╗██╔╝"
-    echo -e "    ${y}██████╦╝███████║██║░░██║███████║██║░░██║██╔██╗██║░╚███╔╝░"
-    echo -e "    ${c}██╔══██╗██╔══██║██║░░██║██╔══██║██║░░██║██║╚████║░██╔██╗░"
-    echo -e "    ${c}██████╦╝██║░░██║██████╔╝██║░░██║╚█████╔╝██║░╚███║██╔╝╚██╗"
-    echo -e "    ${c}╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░╚═╝${n}"
+    echo -e "    ${y}██████╗░░█████╗░██████╗░██╗░░██╗░█████╗░███╗░░██╗"
+    echo -e "    ${y}██╔══██╗██╔══██╗██╔══██╗██║░░██║██╔══██╗████╗░██║"
+    echo -e "    ${y}██████╦╝███████║██║░░██║███████║██║░░██║██╔██╗██║"
+    echo -e "    ${c}██╔══██╗██╔══██║██║░░██║██╔══██║██║░░██║██║╚████║"
+    echo -e "    ${c}██████╦╝██║░░██║██████╔╝██║░░██║╚█████╔╝██║░╚███║"
+    echo -e "    ${c}╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚══╝${n}"
     echo
 }
 
 udp() {
-    messages=$(curl -s "$BADHONX_SERVER/check_version" | jq -r --arg vs "$version" '.[] | select(.message == $vs) | .message')
+    messages=$(curl -s "$BADHON_SERVER/check_version" | jq -r --arg vs "$version" '.[] | select(.message == $vs) | .message')
 
     if [ -n "$messages" ]; then
         banner
         echo -e " ${A} ${c}Tools Updated ${n}| ${c}New ${g}$version"
         sleep 3
-        git clone https://github.com/your-username/BADHONX.git &> /dev/null &
+        git clone https://github.com/your-username/BADHON.git &> /dev/null &
         spin
         cd BADHONX
         bash install.sh
